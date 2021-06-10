@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +124,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# directory where media files will be saved
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# how to access media through the browser
+# format as ''
+MEDIA_URL = '/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -130,5 +139,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'blog-home'
-
 LOGIN_URL = 'login'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# SET AS ENV VAR
+EMAIL_HOST_USER = 'keonipsimon@gmail.com'
+EMAIL_HOST_PASSWORD = 'btmbwklpsdxbqqsc'
+
+# DJANGO BLOG VARS
+# AWS_ACCESS_KEY_ID="AKIA2WXOPJ42ENFFV6RC"
+# AWS_SECRET_ACCESS_KEY="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"
+# AWS_STORAGE_BUCKET_NAME="django-blog-files-kps"
+
+AWS_ACCESS_KEY_ID = 'AKIA2WXOPJ42ENFFV6RC'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'django-blog-files-kps'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
