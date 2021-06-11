@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t@8bo4ipuges7$p3sf73%3phecf7&40*n%v6!j12-%lm=@vb#v'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG_VALUE')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djangoappkps.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -149,17 +149,17 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # SET AS ENV VAR
-EMAIL_HOST_USER = 'keonipsimon@gmail.com'
-EMAIL_HOST_PASSWORD = 'btmbwklpsdxbqqsc'
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 # DJANGO BLOG VARS
 # AWS_ACCESS_KEY_ID="AKIA2WXOPJ42ENFFV6RC"
 # AWS_SECRET_ACCESS_KEY="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"
 # AWS_STORAGE_BUCKET_NAME="django-blog-files-kps"
 
-AWS_ACCESS_KEY_ID = 'AKIA2WXOPJ42ENFFV6RC'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'django-blog-files-kps'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
